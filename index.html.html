@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Đậu Bạc Định Công</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --cream:#FAF7F2;--cream2:#F3EDE3;--silver:#C8C4BC;--dark:#2A2520;--mid:#6B6158;
+    --accent:#A89880;--gold:#C4A96A;
+    --font-head:'Cormorant Garamond',serif;--font-body:'Inter',sans-serif
+  }
+  body{background:var(--cream);color:var(--dark);font-family:var(--font-body);font-size:15px;line-height:1.7}
+  a{text-decoration:none;color:inherit}
+
+  /* NAV */
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(250,247,242,0.95);backdrop-filter:blur(8px);border-bottom:0.5px solid var(--silver);padding:0 40px;display:flex;align-items:center;justify-content:space-between;height:64px}
+  .nav-logo{font-family:var(--font-head);font-size:20px;font-weight:400;letter-spacing:0.04em;color:var(--dark)}
+  .nav-logo span{color:var(--gold)}
+  .nav-links{display:flex;gap:32px;align-items:center}
+  .nav-links a{font-size:13px;font-weight:400;color:var(--mid);letter-spacing:0.06em;text-transform:uppercase;transition:color 0.2s}
+  .nav-links a:hover{color:var(--dark)}
+  .lang-toggle{display:flex;gap:0;border:0.5px solid var(--silver);border-radius:4px;overflow:hidden}
+  .lang-btn{padding:4px 10px;font-size:12px;cursor:pointer;background:transparent;border:none;color:var(--mid);font-family:var(--font-body);transition:all 0.2s}
+  .lang-btn.active{background:var(--dark);color:var(--cream)}
+
+  /* SECTIONS */
+  section{padding:100px 80px}
+  .container{max-width:1100px;margin:0 auto}
+
+  /* HERO */
+  #hero{padding:0;height:100vh;display:flex;align-items:center;background:linear-gradient(160deg,var(--cream) 55%,var(--cream2) 100%);position:relative;overflow:hidden}
+  .hero-inner{max-width:1100px;margin:0 auto;padding:0 80px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;width:100%}
+  .hero-eyebrow{font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);margin-bottom:20px}
+  .hero-title{font-family:var(--font-head);font-size:58px;font-weight:300;line-height:1.15;color:var(--dark);margin-bottom:24px}
+  .hero-title em{font-style:italic;color:var(--gold)}
+  .hero-sub{font-size:15px;color:var(--mid);line-height:1.8;margin-bottom:40px;max-width:420px}
+  .btn-primary{display:inline-block;padding:13px 32px;background:var(--dark);color:var(--cream);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;border:none;cursor:pointer;transition:background 0.2s}
+  .btn-primary:hover{background:var(--mid)}
+  .btn-outline{display:inline-block;padding:13px 32px;background:transparent;color:var(--dark);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;border:0.5px solid var(--dark);cursor:pointer;margin-left:16px;transition:all 0.2s}
+  .btn-outline:hover{background:var(--dark);color:var(--cream)}
+  .hero-visual{display:flex;align-items:center;justify-content:center}
+  .hero-art{width:380px;height:460px;background:var(--cream2);border:0.5px solid var(--silver);position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
+  .hero-art-inner{text-align:center;padding:40px}
+  .hero-art svg{opacity:0.18}
+  .hero-art-label{position:absolute;bottom:24px;left:24px;right:24px;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent)}
+
+  /* DIVIDER */
+  .divider{width:40px;height:0.5px;background:var(--gold);margin:0 auto 48px}
+
+  /* HERITAGE */
+  #heritage{background:var(--cream)}
+  .section-label{font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);margin-bottom:16px}
+  .section-title{font-family:var(--font-head);font-size:42px;font-weight:300;line-height:1.2;margin-bottom:24px;color:var(--dark)}
+  .section-title em{font-style:italic;color:var(--gold)}
+  .heritage-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+  .heritage-text p{font-size:15px;color:var(--mid);line-height:1.85;margin-bottom:16px}
+  .heritage-stats{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:40px}
+  .stat-box{padding:24px;border:0.5px solid var(--silver);background:var(--cream2)}
+  .stat-num{font-family:var(--font-head);font-size:36px;font-weight:300;color:var(--gold)}
+  .stat-label{font-size:12px;color:var(--mid);margin-top:4px;letter-spacing:0.04em}
+  .heritage-visual{background:var(--cream2);border:0.5px solid var(--silver);height:440px;display:flex;align-items:center;justify-content:center;position:relative}
+  .heritage-visual-text{text-align:center;padding:40px}
+  .heritage-visual-text .big{font-family:var(--font-head);font-size:72px;font-weight:300;color:var(--silver);line-height:1}
+  .heritage-visual-text .small{font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-top:8px}
+
+  /* CRAFT */
+  #craft{background:var(--cream2)}
+  .craft-intro{text-align:center;max-width:600px;margin:0 auto 64px}
+  .craft-intro p{color:var(--mid);font-size:15px;line-height:1.85}
+  .craft-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+  .craft-step{background:var(--cream);padding:40px 32px;border:0.5px solid var(--silver)}
+  .step-num{font-family:var(--font-head);font-size:48px;font-weight:300;color:var(--cream2);-webkit-text-stroke:1px var(--silver);margin-bottom:20px}
+  .step-title{font-family:var(--font-head);font-size:20px;font-weight:400;color:var(--dark);margin-bottom:12px}
+  .step-desc{font-size:13px;color:var(--mid);line-height:1.8}
+
+  /* PRODUCTS */
+  #products{background:var(--cream)}
+  .products-intro{text-align:center;max-width:600px;margin:0 auto 64px}
+  .product-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .product-card{border:0.5px solid var(--silver);background:var(--cream);transition:border-color 0.2s}
+  .product-card:hover{border-color:var(--gold)}
+  .product-img{height:260px;background:var(--cream2);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+  .product-tag{position:absolute;top:16px;left:16px;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;background:var(--dark);color:var(--cream);padding:4px 10px}
+  .product-body{padding:24px}
+  .product-title{font-family:var(--font-head);font-size:22px;font-weight:400;color:var(--dark);margin-bottom:8px}
+  .product-desc{font-size:13px;color:var(--mid);line-height:1.75;margin-bottom:16px}
+  .product-link{font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);border-bottom:0.5px solid var(--accent);padding-bottom:2px}
+
+  /* ARTISAN */
+  #artisan{background:var(--dark);color:var(--cream)}
+  #artisan .section-label{color:var(--gold)}
+  #artisan .section-title{color:var(--cream)}
+  #artisan .section-title em{color:var(--gold)}
+  .artisan-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+  .artisan-text p{font-size:15px;color:rgba(250,247,242,0.7);line-height:1.85;margin-bottom:16px}
+  .artisan-quote{border-left:2px solid var(--gold);padding:24px 32px;margin:32px 0;background:rgba(255,255,255,0.03)}
+  .artisan-quote p{font-family:var(--font-head);font-size:22px;font-weight:300;font-style:italic;color:var(--cream);line-height:1.6}
+  .artisan-quote cite{font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-top:12px;display:block;font-style:normal}
+  .artisan-visual{background:rgba(255,255,255,0.04);border:0.5px solid rgba(255,255,255,0.12);height:440px;display:flex;align-items:center;justify-content:center}
+  .artisan-visual-inner{text-align:center;padding:40px}
+  .artisan-visual-inner .icon-ring{width:120px;height:120px;border-radius:50%;border:0.5px solid var(--gold);display:flex;align-items:center;justify-content:center;margin:0 auto 20px}
+  .artisan-visual-inner p{font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold)}
+
+  /* CONTACT */
+  #contact{background:var(--cream2)}
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px}
+  .contact-info p{font-size:15px;color:var(--mid);line-height:1.85;margin-bottom:24px}
+  .contact-detail{display:flex;align-items:flex-start;gap:16px;margin-bottom:20px;padding-bottom:20px;border-bottom:0.5px solid var(--silver)}
+  .contact-detail:last-child{border:none}
+  .contact-detail-label{font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);min-width:80px;margin-top:2px}
+  .contact-detail-val{font-size:14px;color:var(--dark);line-height:1.6}
+  .contact-form{background:var(--cream);border:0.5px solid var(--silver);padding:40px}
+  .form-row{margin-bottom:20px}
+  .form-label{display:block;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+  .form-input{width:100%;padding:12px 16px;border:0.5px solid var(--silver);background:var(--cream2);font-family:var(--font-body);font-size:14px;color:var(--dark);outline:none;transition:border-color 0.2s}
+  .form-input:focus{border-color:var(--accent)}
+  .form-input::placeholder{color:var(--silver)}
+  textarea.form-input{height:100px;resize:none}
+  select.form-input{cursor:pointer}
+  .form-submit{width:100%;padding:14px;background:var(--dark);color:var(--cream);font-family:var(--font-body);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;border:none;cursor:pointer;transition:background 0.2s;margin-top:8px}
+  .form-submit:hover{background:var(--mid)}
+
+  /* FOOTER */
+  footer{background:var(--dark);color:rgba(250,247,242,0.5);padding:48px 80px;display:flex;justify-content:space-between;align-items:center}
+  .footer-logo{font-family:var(--font-head);font-size:18px;font-weight:300;color:var(--cream)}
+  .footer-logo span{color:var(--gold)}
+  .footer-right{font-size:12px;letter-spacing:0.06em;text-align:right}
+
+  /* SILVER ART SVG decoration */
+  .filigree{opacity:0.12}
+
+  /* UTILS */
+  .text-center{text-align:center}
+  .mt-8{margin-top:8px}
+  .vi{display:block}.en{display:none}
+  body.lang-en .vi{display:none}
+  body.lang-en .en{display:block}
+
+  @media(max-width:768px){
+    nav{padding:0 20px}
+    section{padding:80px 24px}
+    .hero-inner,.heritage-grid,.artisan-grid,.contact-grid{grid-template-columns:1fr;gap:40px}
+    .hero-visual,.heritage-visual{display:none}
+    .product-grid,.craft-steps{grid-template-columns:1fr}
+    .hero-title{font-size:40px}
+    footer{flex-direction:column;gap:16px;text-align:center;padding:40px 24px}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#hero" class="nav-logo">Đậu Bạc <span>Định Công</span></a>
+  <div class="nav-links">
+    <a href="#heritage"><span class="vi">Di Sản</span><span class="en">Heritage</span></a>
+    <a href="#craft"><span class="vi">Kỹ Thuật</span><span class="en">Craft</span></a>
+    <a href="#products"><span class="vi">Sản Phẩm</span><span class="en">Products</span></a>
+    <a href="#artisan"><span class="vi">Nghệ Nhân</span><span class="en">Artisan</span></a>
+    <a href="#contact"><span class="vi">Liên Hệ</span><span class="en">Contact</span></a>
+    <div class="lang-toggle">
+      <button class="lang-btn active" onclick="setLang('vi')">VI</button>
+      <button class="lang-btn" onclick="setLang('en')">EN</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-inner">
+    <div>
+      <p class="hero-eyebrow"><span class="vi">Làng nghề truyền thống · Hà Nội</span><span class="en">Traditional craft village · Hanoi</span></p>
+      <h1 class="hero-title">
+        <span class="vi">Nghệ thuật bạc<br><em>tinh hoa</em><br>trăm năm</span>
+        <span class="en">A century of<br><em>silver</em><br>artistry</span>
+      </h1>
+      <p class="hero-sub">
+        <span class="vi">Đậu bạc Định Công là thương hiệu bạc nghệ thuật di sản, chuyên chế tác quà tặng cao cấp và tác phẩm biểu tượng bằng kỹ thuật thủ công truyền thống.</span>
+        <span class="en">Đậu Bạc Định Công is a heritage silver art brand, crafting premium gifts and iconic pieces using centuries-old traditional filigree techniques.</span>
+      </p>
+      <a href="#contact" class="btn-primary"><span class="vi">Yêu cầu báo giá</span><span class="en">Request a quote</span></a>
+      <a href="#heritage" class="btn-outline"><span class="vi">Khám phá</span><span class="en">Explore</span></a>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-art">
+        <div class="hero-art-inner">
+          <svg width="200" height="200" viewBox="0 0 200 200" fill="none" class="filigree">
+            <circle cx="100" cy="100" r="90" stroke="#2A2520" stroke-width="0.8"/>
+            <circle cx="100" cy="100" r="70" stroke="#2A2520" stroke-width="0.5"/>
+            <circle cx="100" cy="100" r="50" stroke="#2A2520" stroke-width="0.5"/>
+            <line x1="10" y1="100" x2="190" y2="100" stroke="#2A2520" stroke-width="0.5"/>
+            <line x1="100" y1="10" x2="100" y2="190" stroke="#2A2520" stroke-width="0.5"/>
+            <line x1="36" y1="36" x2="164" y2="164" stroke="#2A2520" stroke-width="0.3"/>
+            <line x1="164" y1="36" x2="36" y2="164" stroke="#2A2520" stroke-width="0.3"/>
+            <polygon points="100,20 120,80 180,80 132,116 148,176 100,140 52,176 68,116 20,80 80,80" stroke="#C4A96A" stroke-width="0.8" fill="none"/>
+            <circle cx="100" cy="100" r="8" stroke="#C4A96A" stroke-width="0.8" fill="none"/>
+          </svg>
+          <p style="font-family:'Cormorant Garamond',serif;font-size:13px;letter-spacing:0.14em;color:#A89880;text-transform:uppercase;margin-top:16px">Đậu bạc · Định Công</p>
+        </div>
+        <p class="hero-art-label"><span class="vi">Hoa văn đậu bạc truyền thống</span><span class="en">Traditional silver filigree pattern</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HERITAGE -->
+<section id="heritage">
+  <div class="container">
+    <div class="heritage-grid">
+      <div class="heritage-text">
+        <p class="section-label"><span class="vi">Di sản & câu chuyện</span><span class="en">Heritage & story</span></p>
+        <h2 class="section-title">
+          <span class="vi">Nghề đậu bạc<br>Định Công —<br><em>ngàn năm còn đó</em></span>
+          <span class="en">Định Công filigree —<br>a craft that has<br><em>endured for centuries</em></span>
+        </h2>
+        <p>
+          <span class="vi">Đậu bạc Định Công là một trong những nghề thủ công quý hiếm nhất còn được lưu truyền tại Việt Nam. Xuất phát từ làng Định Công, Hà Nội, nghề đậu bạc đòi hỏi kỹ thuật kéo sợi bạc và chắp ghép thủ công vô cùng tinh tế — không thể thay thế bằng máy móc.</span>
+          <span class="en">Định Công filigree is among the rarest traditional crafts still practiced in Vietnam. Originating from Định Công village, Hanoi, it requires the delicate hand-drawing and assembly of silver threads — a process no machine can replicate.</span>
+        </p>
+        <p>
+          <span class="vi">Hiện chỉ còn số ít nghệ nhân và hộ làm nghề, trong đó gia đình chúng tôi đang nắm giữ phần đáng kể năng lực chế tác. Chúng tôi không chỉ bảo tồn nghề — chúng tôi đang mang kỹ thuật truyền thống vào đời sống đương đại.</span>
+          <span class="en">Only a handful of artisans and families still practice this craft, and ours holds a significant portion of that living knowledge. We are not merely preserving a tradition — we are bringing it into contemporary life.</span>
+        </p>
+        <div class="heritage-stats">
+          <div class="stat-box">
+            <div class="stat-num">1+</div>
+            <div class="stat-label"><span class="vi">Nghệ nhân chính</span><span class="en">Master artisan</span></div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">20+</div>
+            <div class="stat-label"><span class="vi">Thợ thủ công</span><span class="en">Skilled craftspeople</span></div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">3</div>
+            <div class="stat-label"><span class="vi">Dòng sản phẩm</span><span class="en">Product lines</span></div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">100%</div>
+            <div class="stat-label"><span class="vi">Thủ công truyền thống</span><span class="en">Handcrafted by tradition</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="heritage-visual">
+        <div class="heritage-visual-text">
+          <div class="big">銀</div>
+          <div class="small"><span class="vi">Bạc · Tinh hoa · Di sản</span><span class="en">Silver · Mastery · Heritage</span></div>
+          <div style="margin-top:40px">
+            <svg width="140" height="140" viewBox="0 0 140 140" fill="none">
+              <rect x="10" y="10" width="120" height="120" stroke="#C8C4BC" stroke-width="0.5"/>
+              <rect x="20" y="20" width="100" height="100" stroke="#C4A96A" stroke-width="0.4"/>
+              <circle cx="70" cy="70" r="30" stroke="#C8C4BC" stroke-width="0.5" fill="none"/>
+              <circle cx="70" cy="70" r="18" stroke="#C4A96A" stroke-width="0.5" fill="none"/>
+              <line x1="10" y1="10" x2="130" y2="130" stroke="#C8C4BC" stroke-width="0.3"/>
+              <line x1="130" y1="10" x2="10" y2="130" stroke="#C8C4BC" stroke-width="0.3"/>
+              <circle cx="70" cy="70" r="4" fill="#C4A96A"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CRAFT TECHNIQUE -->
+<section id="craft">
+  <div class="container">
+    <div class="craft-intro text-center">
+      <p class="section-label"><span class="vi">Kỹ thuật chế tác</span><span class="en">The craft process</span></p>
+      <h2 class="section-title"><span class="vi">Từ sợi bạc đến<br><em>tác phẩm nghệ thuật</em></span><span class="en">From silver thread<br>to <em>work of art</em></span></h2>
+      <p style="color:var(--mid)"><span class="vi">Mỗi tác phẩm đậu bạc Định Công là sự kết hợp giữa kỹ thuật thủ công truyền thống và đôi bàn tay của nghệ nhân — không có sản phẩm nào giống nhau hoàn toàn.</span><span class="en">Every piece is the union of centuries-old technique and the artisan's own hands — no two works are ever identical.</span></p>
+    </div>
+    <div class="craft-steps">
+      <div class="craft-step">
+        <div class="step-num">01</div>
+        <h3 class="step-title"><span class="vi">Kéo sợi bạc</span><span class="en">Drawing silver wire</span></h3>
+        <p class="step-desc"><span class="vi">Bạc nguyên chất được kéo thành sợi mảnh có đường kính chỉ vài phần mười milimét — đòi hỏi sức bền và độ chính xác tuyệt đối.</span><span class="en">Pure silver is drawn into wire just fractions of a millimeter in diameter — requiring both strength and absolute precision.</span></p>
+      </div>
+      <div class="craft-step">
+        <div class="step-num">02</div>
+        <h3 class="step-title"><span class="vi">Tạo hình & chắp ghép</span><span class="en">Shaping & assembly</span></h3>
+        <p class="step-desc"><span class="vi">Từng sợi bạc được uốn, chắp và ghép theo hoa văn — thường là các motif truyền thống như hoa sen, rồng phượng hay hình học cổ điển.</span><span class="en">Each wire is bent, joined and assembled into patterns — often traditional motifs such as lotus, dragon, phoenix or classical geometric forms.</span></p>
+      </div>
+      <div class="craft-step">
+        <div class="step-num">03</div>
+        <h3 class="step-title"><span class="vi">Hoàn thiện & đánh bóng</span><span class="en">Finishing & polishing</span></h3>
+        <p class="step-desc"><span class="vi">Tác phẩm được xử lý bề mặt, đánh bóng và kiểm tra kỹ từng chi tiết trước khi hoàn thành — đảm bảo độ tinh xảo xứng tầm một tác phẩm di sản.</span><span class="en">Each piece is surfaced, polished and inspected in detail before completion — ensuring the refinement befitting a heritage work.</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section id="products">
+  <div class="container">
+    <div class="products-intro text-center">
+      <p class="section-label"><span class="vi">Dòng sản phẩm</span><span class="en">Product lines</span></p>
+      <h2 class="section-title"><span class="vi">Ba dòng sản phẩm,<br><em>một tiêu chuẩn tay nghề</em></span><span class="en">Three product lines,<br><em>one standard of craft</em></span></h2>
+    </div>
+    <div class="product-grid">
+      <!-- Card 1 -->
+      <div class="product-card">
+        <div class="product-img" style="background:#EEE8DF">
+          <span class="product-tag"><span class="vi">Doanh thu lõi</span><span class="en">Core revenue</span></span>
+          <svg width="120" height="120" viewBox="0 0 120 120" fill="none">
+            <rect x="10" y="30" width="100" height="70" stroke="#A89880" stroke-width="0.8" fill="none"/>
+            <rect x="20" y="40" width="80" height="50" stroke="#C4A96A" stroke-width="0.5" fill="none"/>
+            <line x1="60" y1="30" x2="60" y2="10" stroke="#A89880" stroke-width="0.8"/>
+            <line x1="40" y1="10" x2="80" y2="10" stroke="#A89880" stroke-width="0.8"/>
+            <circle cx="60" cy="65" r="14" stroke="#C4A96A" stroke-width="0.8" fill="none"/>
+            <circle cx="60" cy="65" r="6" fill="#C4A96A" opacity="0.3"/>
+          </svg>
+        </div>
+        <div class="product-body">
+          <h3 class="product-title"><span class="vi">Quà Tặng Doanh Nghiệp</span><span class="en">Corporate Signature Gifts</span></h3>
+          <p class="product-desc"><span class="vi">Tranh bạc biểu tượng, plaque kỷ niệm, vật phẩm để bàn cho lãnh đạo và gift set thủ công cao cấp dành cho doanh nghiệp. Có thể tùy biến theo logo, thông điệp và yêu cầu riêng.</span><span class="en">Iconic silver artworks, commemorative plaques, executive desk objects and premium handcrafted gift sets for corporations. Customizable with logos, messages and specific requirements.</span></p>
+          <a href="#contact" class="product-link"><span class="vi">Yêu cầu báo giá →</span><span class="en">Request a quote →</span></a>
+        </div>
+      </div>
+      <!-- Card 2 -->
+      <div class="product-card">
+        <div class="product-img" style="background:#F0EBE4">
+          <span class="product-tag"><span class="vi">Quà biếu cao cấp</span><span class="en">Premium gifts</span></span>
+          <svg width="120" height="120" viewBox="0 0 120 120" fill="none">
+            <polygon points="60,10 75,50 115,50 82,73 94,110 60,87 26,110 38,73 5,50 45,50" stroke="#C4A96A" stroke-width="0.8" fill="none"/>
+            <circle cx="60" cy="60" r="20" stroke="#A89880" stroke-width="0.5" fill="none"/>
+            <circle cx="60" cy="60" r="4" fill="#C4A96A" opacity="0.5"/>
+          </svg>
+        </div>
+        <div class="product-body">
+          <h3 class="product-title"><span class="vi">Quà Biếu & Cá Nhân</span><span class="en">Executive & Premium Gifts</span></h3>
+          <p class="product-desc"><span class="vi">Quà khai trương, quà tri ân, vật phẩm để bàn và tác phẩm cỡ nhỏ - trung bình mang giá trị biểu tượng. Lý tưởng cho những dịp cần một món quà thực sự có ý nghĩa.</span><span class="en">Opening gifts, appreciation gifts, desk objects and small-to-medium pieces of symbolic value. Ideal for occasions that call for a truly meaningful gift.</span></p>
+          <a href="#contact" class="product-link"><span class="vi">Tìm hiểu thêm →</span><span class="en">Learn more →</span></a>
+        </div>
+      </div>
+      <!-- Card 3 -->
+      <div class="product-card">
+        <div class="product-img" style="background:#E8E2D9">
+          <span class="product-tag" style="background:var(--gold)"><span class="vi">Prestige</span><span class="en">Prestige</span></span>
+          <svg width="120" height="120" viewBox="0 0 120 120" fill="none">
+            <circle cx="60" cy="60" r="50" stroke="#A89880" stroke-width="0.5" fill="none"/>
+            <circle cx="60" cy="60" r="38" stroke="#C4A96A" stroke-width="0.8" fill="none"/>
+            <circle cx="60" cy="60" r="25" stroke="#A89880" stroke-width="0.4" fill="none"/>
+            <line x1="60" y1="10" x2="60" y2="110" stroke="#C8C4BC" stroke-width="0.3"/>
+            <line x1="10" y1="60" x2="110" y2="60" stroke="#C8C4BC" stroke-width="0.3"/>
+            <line x1="25" y1="25" x2="95" y2="95" stroke="#C8C4BC" stroke-width="0.3"/>
+            <line x1="95" y1="25" x2="25" y2="95" stroke="#C8C4BC" stroke-width="0.3"/>
+            <circle cx="60" cy="60" r="5" fill="#C4A96A"/>
+          </svg>
+        </div>
+        <div class="product-body">
+          <h3 class="product-title"><span class="vi">Tác Phẩm Di Sản</span><span class="en">Heritage Art Pieces</span></h3>
+          <p class="product-desc"><span class="vi">Mô hình phục chế, tác phẩm độc bản và các piece phức tạp thể hiện kỹ thuật đậu bạc ở mức cao nhất. Dành cho nhà sưu tầm, không gian tiếp khách cao cấp và tổ chức văn hóa.</span><span class="en">Restoration models, one-of-a-kind pieces and complex works showcasing filigree at its highest level. For collectors, premium reception spaces and cultural institutions.</span></p>
+          <a href="#contact" class="product-link"><span class="vi">Đặt tác phẩm →</span><span class="en">Commission a piece →</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ARTISAN -->
+<section id="artisan">
+  <div class="container">
+    <div class="artisan-grid">
+      <div>
+        <p class="section-label"><span class="vi">Nghệ nhân & đội ngũ</span><span class="en">Artisan & team</span></p>
+        <h2 class="section-title"><span class="vi">Đôi bàn tay<br>không thể<br><em>thay thế</em></span><span class="en">Hands that<br>cannot be<br><em>replaced</em></span></h2>
+        <div class="artisan-text">
+          <p><span class="vi">Đội ngũ của chúng tôi gồm một nghệ nhân chính, năm thợ cứng và mười lăm thợ tay nghề trung bình — tất cả đều gắn bó với nghề qua nhiều năm luyện tập và truyền dạy.</span><span class="en">Our team comprises a master artisan, five senior craftspeople and fifteen skilled silversmiths — all devoted to their craft through years of practice and transmission.</span></p>
+          <p><span class="vi">Thế mạnh nổi bật nhất của chúng tôi là kỹ thuật đậu bạc truyền thống, cùng khả năng làm tranh, trang sức, mô hình, hàng trưng bày và phục chế độc bản.</span><span class="en">Our most distinctive strength is the traditional filigree technique, along with the capacity to create artworks, jewelry, scale models, display pieces and unique restorations.</span></p>
+        </div>
+        <div class="artisan-quote">
+          <p><span class="vi">"Mỗi sợi bạc kể một câu chuyện. Nhiệm vụ của chúng tôi là đảm bảo câu chuyện đó được kể đúng và được lưu lại mãi mãi."</span><span class="en">"Every silver thread tells a story. Our responsibility is to ensure that story is told truthfully — and preserved forever."</span></p>
+          <cite><span class="vi">Nghệ nhân Đậu Bạc Định Công</span><span class="en">Master artisan, Đậu Bạc Định Công</span></cite>
+        </div>
+      </div>
+      <div class="artisan-visual">
+        <div class="artisan-visual-inner">
+          <div class="icon-ring">
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+              <circle cx="24" cy="24" r="18" stroke="#C4A96A" stroke-width="0.8" fill="none"/>
+              <circle cx="24" cy="24" r="10" stroke="#C4A96A" stroke-width="0.5" fill="none"/>
+              <line x1="24" y1="6" x2="24" y2="42" stroke="#C4A96A" stroke-width="0.4"/>
+              <line x1="6" y1="24" x2="42" y2="24" stroke="#C4A96A" stroke-width="0.4"/>
+              <circle cx="24" cy="24" r="3" fill="#C4A96A"/>
+            </svg>
+          </div>
+          <p><span class="vi">Xưởng chế tác · Định Công · Hà Nội</span><span class="en">Craft studio · Định Công · Hanoi</span></p>
+          <p style="margin-top:8px;font-size:11px;opacity:0.5"><span class="vi">Tham quan theo lịch hẹn</span><span class="en">Visits by appointment</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div style="text-align:center;max-width:600px;margin:0 auto 64px">
+      <p class="section-label"><span class="vi">Liên hệ & báo giá</span><span class="en">Contact & quote</span></p>
+      <h2 class="section-title"><span class="vi">Bắt đầu<br><em>một dự án cùng nhau</em></span><span class="en">Begin<br><em>a project together</em></span></h2>
+    </div>
+    <div class="contact-grid">
+      <div>
+        <p class="contact-info"><span class="vi">Chúng tôi làm việc trực tiếp với doanh nghiệp, tổ chức và cá nhân có nhu cầu quà tặng cao cấp hoặc tác phẩm đặt riêng. Vui lòng liên hệ để nhận tư vấn và báo giá.</span><span class="en">We work directly with businesses, organisations and individuals seeking premium gifts or bespoke commissions. Please get in touch for consultation and a quote.</span></p>
+        <div class="contact-detail">
+          <span class="contact-detail-label"><span class="vi">Địa chỉ</span><span class="en">Address</span></span>
+          <span class="contact-detail-val"><span class="vi">Làng Định Công, Hoàng Mai, Hà Nội, Việt Nam</span><span class="en">Định Công Village, Hoàng Mai, Hanoi, Vietnam</span></span>
+        </div>
+        <div class="contact-detail">
+          <span class="contact-detail-label">Email</span>
+          <span class="contact-detail-val">hello@daubacdinhcong.vn</span>
+        </div>
+        <div class="contact-detail">
+          <span class="contact-detail-label"><span class="vi">Điện thoại</span><span class="en">Phone</span></span>
+          <span class="contact-detail-val">+84 (0) — — — — — —</span>
+        </div>
+        <div class="contact-detail">
+          <span class="contact-detail-label"><span class="vi">Giờ làm việc</span><span class="en">Hours</span></span>
+          <span class="contact-detail-val"><span class="vi">Thứ 2 – Thứ 7, 8:00 – 17:30</span><span class="en">Monday – Saturday, 8:00 – 17:30</span></span>
+        </div>
+      </div>
+      <div class="contact-form">
+        <div class="form-row">
+          <label class="form-label"><span class="vi">Họ và tên</span><span class="en">Full name</span></label>
+          <input type="text" class="form-input" placeholder="Nguyễn Văn A / John Smith">
+        </div>
+        <div class="form-row">
+          <label class="form-label"><span class="vi">Tổ chức / Công ty</span><span class="en">Organisation / Company</span></label>
+          <input type="text" class="form-input" placeholder="—">
+        </div>
+        <div class="form-row">
+          <label class="form-label">Email</label>
+          <input type="email" class="form-input" placeholder="email@example.com">
+        </div>
+        <div class="form-row">
+          <label class="form-label"><span class="vi">Nhu cầu</span><span class="en">Enquiry type</span></label>
+          <select class="form-input">
+            <option value=""><span class="vi">— Chọn dòng sản phẩm —</span></option>
+            <option><span class="vi">Quà tặng doanh nghiệp</span><span class="en">Corporate Signature Gifts</span></option>
+            <option><span class="vi">Quà biếu cao cấp</span><span class="en">Executive & Premium Gifts</span></option>
+            <option><span class="vi">Tác phẩm di sản / đặt riêng</span><span class="en">Heritage Art / Bespoke Commission</span></option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label class="form-label"><span class="vi">Tin nhắn</span><span class="en">Message</span></label>
+          <textarea class="form-input" placeholder="— "></textarea>
+        </div>
+        <button class="form-submit"><span class="vi">Gửi yêu cầu</span><span class="en">Send enquiry</span></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">Đậu Bạc <span>Định Công</span></div>
+  <div class="footer-right">
+    <div style="color:rgba(250,247,242,0.7);font-size:11px;letter-spacing:0.08em">
+      <span class="vi">© 2026 Đậu Bạc Định Công · Làng Định Công, Hà Nội</span>
+      <span class="en">© 2026 Đậu Bạc Định Công · Định Công Village, Hanoi</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+function setLang(l){
+  document.body.className=l==='en'?'lang-en':'';
+  document.querySelectorAll('.lang-btn').forEach(b=>{
+    b.classList.toggle('active',b.textContent.trim()===l.toUpperCase());
+  });
+}
+</script>
+</body>
+</html>
